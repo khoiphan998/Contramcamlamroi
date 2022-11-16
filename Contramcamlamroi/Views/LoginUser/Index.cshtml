@@ -21,7 +21,7 @@
     @using (Html.BeginForm("Index", "LoginUser"))
     {
         @Html.AntiForgeryToken()
-        <table>
+        <table style="margin-left:20%;">
             <tr>
                 <td>Tên Đăng Nhập</td>
                 <td>@Html.TextBoxFor(model => model.NameUser, new { style = "field-validation-error" })</td>

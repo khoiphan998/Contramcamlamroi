@@ -13,6 +13,7 @@
     .field-validation-error {
         color: red;
     }
+   
 </style>
 
 
@@ -20,7 +21,7 @@
 @using (Html.BeginForm("LoginAcount", "Admin"))
 {
     @Html.AntiForgeryToken()
-    <table>
+    <table >
         <tr>
             <td>@Html.LabelFor(model => model.NameUser)</td>
             <td>@Html.TextBoxFor(model => model.NameUser, new { style = "field-validation-error" })</td>

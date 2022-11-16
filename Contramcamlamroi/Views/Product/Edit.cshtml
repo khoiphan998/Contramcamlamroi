@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
 }
 
 <h1>CẬP NHẬT SẢN PHẨM</h1>
@@ -13,15 +13,16 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ProductID)
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                <b>Tên Sản Phẩm</b>
-            </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <a href="~/Views/Product/SelectCate.cshtml">~/Views/Product/SelectCate.cshtml</a>
+        <div class="control-label col-md-2">
+            <b>Tên Sản Phẩm</b>
         </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+        </div>
+    </div>
         <div class="form-group">
             <div class="control-label col-md-2">
                 <b>Mô tả</b>

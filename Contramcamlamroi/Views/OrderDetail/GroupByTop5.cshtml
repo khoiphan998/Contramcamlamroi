@@ -6,24 +6,19 @@
 }
 
 <h2>Danh Sách 5 Sản Phẩm Bán Chạy Nhất</h2>
-<table class="table-bordered">
-    <tr>
-        <th>Mã Sản Phẩm</th>
-        <th>Tên Sản Phẩm</th>
-        <th>Hình Sản Phẩm</th>
-        <th>Giá</th>
-        <th>Tổng Số lượng</th>
-    </tr>
-    @foreach (var i in Model)
-    {
-        <tr>
-            <td>@Html.DisplayFor(model => i.IDPro)</td>
-            <td>@Html.DisplayFor(model => i.NamePro)</td>
-            <td><img src="@Url.Content(i.ImgPro)" height="150" width="150" /></td>
-            <td>@Html.DisplayFor(model => i.pricePro)</td>
-            <td>@Html.DisplayFor(model => i.Sum_Quantity)</td>
-            <td><a href="/ShoppingCart/AddToCart/@i.IDPro" class="btn btn-default">Buy</a></td>
-        </tr>
-    }
-</table>
+    <div class="row">
+        @foreach (var i in Model)
+        {
+            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" style="border-width:thick;">
+                <div class="card-pro">
+              
+                    <div class="product-iamge" style="text-align:center;"><img src="@Url.Content(i.ImgPro)" height="200" width="200" /></div>
+                    <p style="text-align:center;">@Html.DisplayFor(model => i.NamePro)</p>
+                    <p style="text-align:center;">@Html.DisplayFor(model => i.pricePro)</p>
+                    <p style="text-align:center;">@Html.DisplayFor(model => i.Sum_Quantity) </p>
+                    <a href="/ShoppingCart/AddToCart/@i.IDPro" class="btn btn-default"> Buy </a>
+                </div>
 
+            </div>
+        }
+    </div>

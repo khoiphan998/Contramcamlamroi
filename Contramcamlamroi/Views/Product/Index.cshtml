@@ -3,47 +3,50 @@
 @using PagedList.Mvc;
 @model PagedList.PagedList<Product>
 
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 
-<div id="div-ds" style="text-align:center;"><h2>Danh Sách Sản Phẩm</h2></div>
-<div id="div-search" style="text-align:center; margin:30px;">
-    @using (Html.BeginForm("SearchOption", "Product"))
-    {
-        <text> TỪ </text>
-        <input type="number" name="min" />
-        <text> ĐẾN </text>
-        <input type="number" name="max" />
-        <input type="submit" value="Search" />
-    }
- </div>   
-<div class="container">
-    <div class="row">
-        @foreach (var pro in Model)
+    <div id="div-ds" style="text-align:center;"><h2>Danh Sách Sản Phẩm</h2></div>
+    <div id="div-search" style="text-align:center; margin:10px;">
+        @using (Html.BeginForm("SearchOption", "Product"))
         {
-            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" style="border-width:thick;">
-                <div class="card-pro">
-                    @*@ <p> @Html.DisplayFor(model => pro.ProductID)</p>*@
-                   <div class="product-iamge" style="text-align:center;"><img src="@Url.Content(pro.ImagePro)" height="150" width="150" /></div>    
-                    <p style="text-align:center;">@Html.DisplayFor(model => pro.NamePro)</p>
-                    <p style="text-align:center;">@Html.DisplayFor(model => pro.Price)</p>
-                    <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default"> Buy </a>
-                </div>
-
-            </div>
+            <text> TỪ </text>
+            <input type="number" name="min" />
+            <text> ĐẾN </text>
+            <input type="number" name="max" />
+            <input type="submit" value="Search" />
         }
     </div>
-</div>    
 
-Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-<div class="MenuPage" style="text-align:center;">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new {page = page}))
-</div>
-        
-    
-        
+    <div class="container">
+        <div class="row">
+            @foreach (var pro in Model)
+            {
+                <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" style="border-width:thick;">
+                    <div class="card-pro">
+                        @*@ <p> @Html.DisplayFor(model => pro.ProductID)</p>*@
+                        <div class="product-iamge" style="text-align:center;"><img src="@Url.Content(pro.ImagePro)" height="200" width="200" /></div>
+                        <p style="text-align:center;">@Html.DisplayFor(model => pro.NamePro)</p>
+                        <p style="text-align:center;">@Html.DisplayFor(model => pro.Price)</p>
+                        <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default"> Buy </a>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+    Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuPage" style="text-align:center;">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+
+
+
 
 

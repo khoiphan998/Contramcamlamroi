@@ -14,9 +14,9 @@ namespace Contramcamlamroi.Controllers
         public ActionResult Index(string _name)
         {
             if (_name == null)
-                return View(db.OrderPro.ToList());
+                return View(db.Customers.ToList());
             else
-                return View(db.OrderPro.Where(s => s.NameCus.Contains(_name)).ToList());
+                return View(db.Customers.Where(s => s.NameCus.Contains(_name)).ToList());
         }
         public ActionResult Create()
         {
@@ -27,7 +27,7 @@ namespace Contramcamlamroi.Controllers
         {
             try
             {
-                db.OrderPro.Add(cus);
+               db.Customers.Add(cus);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

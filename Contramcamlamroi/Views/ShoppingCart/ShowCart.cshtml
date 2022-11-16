@@ -7,6 +7,7 @@
 
 <h2>Giỏ Hàng</h2>
 <a href="@Url.Action("Index","Product")">Tiếp tục mua hàng</a>
+<div style="margin-left:10%;"
 @if (Model != null)
 {
     <table class="table">
@@ -26,7 +27,7 @@
                 decimal total = item._quantity * (decimal)item._product.Price.Value;
                 <tr>
                     <td>@Html.DisplayFor(model => item._product.NamePro)</td>
-                    <td><img src="@Url.Content(item._product.ImagePro)" height="50" width="50" /></td>
+                    <td><img src="@Url.Content(item._product.ImagePro)" height="150" width="150" /></td>
                     <td>@Html.DisplayFor(model => item._product.Price) </td>
                     <td>
                         @using (Html.BeginForm("Update_Cart_quantity", "ShoppingCart"))
@@ -77,4 +78,4 @@
         </tfoot>
     </table>
 }
-
+    </div>

@@ -7,12 +7,16 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/script.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/idk3wns.css">
     <style>
         #animation-top5 {
             color: white;
             text-shadow: 1px 1px 2px gray, 0 0 25px red, 0 0 5px red;
         }
 
+        input[type="number"] {
+            height: 20px;
+        }
         /*.div-footer {
             position: fixed;
             text-align: center;
@@ -32,27 +36,29 @@
         .navbar-inverse {
             background-color: green;
         }
-        
 
-        .navbar-inverse .navbar-nav > li > a {
-            color: black;
-            font-size: 14px;
 
-        }
-         form {
+            .navbar-inverse .navbar-nav > li > a {
+                color: black;
+                font-size: 14px;
+            }
+
+        form {
             display: -webkit-inline-box;
         }
-         input[type=text] {
+
+        input[type=text] {
             width: 200px;
             -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
 
-            /* When the input field gets focus, change its width to 100% */
-            .search-product-price input[type=text]:focus {
-                width: 400px;
-                height: 35px;
-            }
+        /* When the input field gets focus, change its width to 100% */
+        .search-product-price input[type=text]:focus {
+            width: 400px;
+            height: 35px;
+        }
+
         input, select, textarea {
             max-width: 800px;
             height: 35px;
@@ -63,30 +69,48 @@
             transition: all 0.5s;
             border: solid 1px black;
         }
+
             input[type="text" i] {
                 padding: 1px 2px;
-                margin-top:10px;
+                margin-top: 10px;
+                border-radius: 5px;
             }
+
         td, th {
             padding-right: 10px;
         }
+
         input[type="submit"] {
             -webkit-appearance: button;
             cursor: pointer;
             margin-top: 10px;
         }
-        .col-md-10 {
-            width: 83.33333333%;
-            margin-top: 50px;
 
+        .col-md-10 {
+            width: 50%;
         }
-        .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+
+        .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-10, .col-md-9, .col-md-11, .col-md-12 {
             float: left;
-            text-align:center;
-            padding:30px;
+            text-align: center;
+            padding: 10px;
+            
         }
+
+        .col-md-2 {
+            width: 15%;
+            margin-left: 8%;
+        }
+
+        span.badge {
+            float: right;
+            margin-right: -8px;
+        }
+
         .card-pro {
-    border:1px solid gray;
+            border: 1px solid gray;
+            height: auto;
+            border-radius:10px;
         }
     </style>
 </head>
@@ -100,7 +124,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("VEGEFOODS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("VEGEFOODS", "Index", "Product", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -110,14 +134,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <span>
-                            <a href="/ShoppingCart/ShowCart">
-                                <img src="@Url.Content("~/Content/images/cart.png")" style="height:30px;width:30px;margin-top:10px;" />
-                            </a>
-                        </span>
-                        @Html.Action("BagCart", "ShoppingCart")
-                    </li>
+                    
                     <li><a href="/LoginUser/RegisterUser"><span class="glyphicon glyphicon-user"></span>  Đăng Kí</a></li>
                     <li><a href="/LoginUser/Index"><span class="glyphicon glyphicon-user"></span>  Đăng Nhập</a></li>
                     <li><a href="@Url.Action("LogOutUser","LoginUser")"> LogOut</a></li>
@@ -132,31 +149,38 @@
                             <span> <text> Hello </text> <a href="@Url.Action("Index_Admin","Product")">@Session["NameUser"]</a></span>
                         }
                     </li>
-
+                    
                 </ul>
+
             </div>
-            <div class="search-product-price"style="text-align: center">
+            <div class="search-product-price" style="text-align: center">
                 @using (Html.BeginForm("Search", "Product"))
                 {
-                <input type="text" name="_name" placeholder="Bạn tìm cấy chi rứa?...">
-                    <input type="submit" value="Tìm" style="background-color: green; color: white; border-color: white; border-style: solid; border-width: 1px; border-radius: 3px; background-color: lawngreen; -webkit-box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); "/>
+                    <input type="text" name="_name" placeholder="Bạn tìm cấy chi rứa?...">
+                    <input type="submit" value="Tìm" style="background-color: green; color: white; border-color: white; border-style: solid; border-width: 1px; border-radius: 3px; background-color: lawngreen; -webkit-box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); " />
                 }
-
+                <span style="float:right;">
+                    <a href="/ShoppingCart/ShowCart">
+                        <img src="@Url.Content("~/Content/images/cart.png")" style="height:30px;width:30px;margin-top:10px;" />
+                    </a>
+                </span>
+                @Html.Action("BagCart", "ShoppingCart")
 
             </div>
         </div>
 
     </div>
     
-    <div class="row" style="margin-top:30px">
-        <div class="col-md-2">
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-12">
             <ul style="text-decoration:none;background-color:greenyellow;margin-top:20px;list-style-type:none;padding:10px;">
                 <li><a href="/OrderDetail/GroupByTop5" style="color:white;" id="animation-top5">Top 5 sản phẩm bán chạy nhất</a></li>
             </ul>
-
+</div>
+        <div class="col-md-2" style="margin-top:6.60%;margin-left:10%;" >
             @{ Html.RenderAction("CategoryPartial", "Categories");}
         </div>
-        <div class="col-md-10" id="div-content">
+        <div class="col-md-10" id="div-content" style="margin-left:2%;">
             @RenderBody()
         </div>
     </div>

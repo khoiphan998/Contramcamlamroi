@@ -26,5 +26,6 @@ namespace Contramcamlamroi.Models
     
         public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public object NameCus { get; internal set; }
     }
 }
