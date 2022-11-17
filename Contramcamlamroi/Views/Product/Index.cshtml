@@ -1,7 +1,7 @@
 ﻿@*@model IEnumerable<Contramcamlamroi.Models.Product>*@
 @using Contramcamlamroi.Models;
 @using PagedList.Mvc;
-@model PagedList.PagedList < Product >
+@model PagedList.PagedList<Product>
 
 
 
@@ -10,43 +10,115 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+<style>
+    .card-pro:hover {
+        border: 1px solid green;
+        transition: transform .2s;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .hbtn {
+        position: relative;
+        box-sizing: border-box;
+        display: inline-block;
+        overflow: hidden;
+        padding: 8px 20px;
+        margin: 0px 3px 6px;
+        text-align: center;
+        border: 2px solid rgb(255, 255, 255);
+        text-decoration: none;
+        color: black;
+        white-space: nowrap;
+        z-index: 0;
+        border: 1px solid #BFBFBF;
+        border-radius: 10px;
+    }
 
 
-    <div id="div-search" style="text-align:center; margin:10px;">
-        @using (Html.BeginForm("SearchOption", "Product"))
+        .hbtn i {
+            padding-right: 8px;
+        }
+
+
+    .hb-fill-right-bg::before {
+        position: absolute;
+        content: "";
+        background: limegreen;
+        transition-duration: 0.3s;
+        z-index: -1;
+        inset: 0px auto auto 0px;
+        width: 0px;
+        height: 100%;
+        opacity: 1;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 10px;
+    }
+
+
+    .hb-fill-right-bg:hover::before {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+    }
+
+
+    .hb-fill-right-bg:hover {
+        color: rgb(0, 0, 0);
+        background: white;
+        transition: all 0.3s ease 0s;
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 10px;
+    }
+    .product-img:hover {
+        -ms-transform: scale(1.1); /* IE 9 */
+        -webkit-transform: scale(1.1); /* Safari 3-8 */
+        transform: scale(1.1);
+    }
+    
+</style>
+
+<div id="div-search" style="text-align:center; margin:10px;">
+    @using (Html.BeginForm("SearchOption", "Product"))
+    {
+        <text> TỪ </text>
+        <input type="number" name="min" />
+        <text> ĐẾN </text>
+        <input type="number" name="max" />
+        <input type="submit" value="Search" />
+    }
+    
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var pro in Model)
         {
-            <text> TỪ </text>
-            <input type="number" name="min" />
-            <text> ĐẾN </text>
-            <input type="number" name="max" />
-            <input type="submit" value="Search" />
+            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" style="border-width:thick;">
+                <div class="card-pro">
+                    @*@ <p> @Html.DisplayFor(model => pro.ProductID)</p>*@
+                    <a href="Product/ProductList" style="text-align:center;" class="product-img"><img src="@Url.Content(pro.ImagePro)" height="200" width="200" />        
+                   </a>
+                    <p style="text-align: center; font-size: 20px; font-weight: 600">@Html.DisplayFor(model => pro.NamePro)</p>
+                    <p style="font-weight:600;">@Html.DisplayFor(model => pro.Price)</p>
+                    <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="hbtn hb-fill-right-bg">Mua</a>
+                </div>
+
+
+            </div>
         }
     </div>
-
-    <div class="container">
-        <div class="row">
-            @foreach (var pro in Model)
-            {
-                <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" style="border-width:thick;">
-                    <div class="card-pro">
-                        @*@ <p> @Html.DisplayFor(model => pro.ProductID)</p>*@
-                        <a href="Product/ProductList" style="text-align:center;"><img src="@Url.Content(pro.ImagePro)"height="200" width="200" /></a>
-                        <p style=""text-align:center;">@Html.DisplayFor(model => pro.NamePro)</p>
-                        <p style="text-align:center;">@Html.DisplayFor(model => pro.Price)</p>
-                        <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default"> Buy </a>
-                    </div>
-
-                </div>
-            }
-        </div>
-    </div>
+</div>
 
     Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
     <div class="MenuPage" style="text-align:center;">
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
     </div>
 
+    
 
+    
 
 
 

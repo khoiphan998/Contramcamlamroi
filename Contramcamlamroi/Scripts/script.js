@@ -16,4 +16,3 @@ $('.navTrigger').click(function () {
 
 });
 
-  
