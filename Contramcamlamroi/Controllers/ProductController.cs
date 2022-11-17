@@ -15,6 +15,7 @@ namespace Contramcamlamroi.Controllers
     {
         // GET: Product
         DBSportStoreEntities2 database = new DBSportStoreEntities2();
+
         public ActionResult SearchOption(double min = double.MinValue, double max = double.MaxValue)
         {
             var list = database.Products.Where(p => (double)p.Price >= double.MinValue && (double)p.Price <= max).ToList();

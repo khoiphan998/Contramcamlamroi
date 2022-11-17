@@ -2,12 +2,12 @@
 
 @{
     ViewBag.Title = "ShowCart";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
 <h2>Giỏ Hàng</h2>
 <a href="@Url.Action("Index","Product")">Tiếp tục mua hàng</a>
-<div style="margin-left:10%;"
+<div style="margin-left:10%;">
 @if (Model != null)
 {
     <table class="table">
@@ -40,7 +40,7 @@
                     </td>
                     <td>@total</td>
                     <td>
-                        <a href="/ShoppingCart/RemoveCart/@item._product.ProductID">Xóa</a>
+                        <a href="/ShoppingCart/RemoveCart/@item._product.ProductID"><div class="btn btn-default">Xóa</div></a>
                     </td>
 
                 </tr>

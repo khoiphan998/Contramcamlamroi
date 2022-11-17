@@ -1,7 +1,7 @@
 ﻿@*@model IEnumerable<Contramcamlamroi.Models.Product>*@
 @using Contramcamlamroi.Models;
 @using PagedList.Mvc;
-@model PagedList.PagedList<Product>
+@model PagedList.PagedList < Product >
 
 
 
@@ -30,8 +30,8 @@
                 <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" style="border-width:thick;">
                     <div class="card-pro">
                         @*@ <p> @Html.DisplayFor(model => pro.ProductID)</p>*@
-                        <div class="product-iamge" style="text-align:center;"><img src="@Url.Content(pro.ImagePro)" height="200" width="200" /></div>
-                        <p style="text-align:center;">@Html.DisplayFor(model => pro.NamePro)</p>
+                        <a href="Product/ProductList" style="text-align:center;"><img src="@Url.Content(pro.ImagePro)"height="200" width="200" /></a>
+                        <p style=""text-align:center;">@Html.DisplayFor(model => pro.NamePro)</p>
                         <p style="text-align:center;">@Html.DisplayFor(model => pro.Price)</p>
                         <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default"> Buy </a>
                     </div>
