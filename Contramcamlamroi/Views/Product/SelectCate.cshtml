@@ -1,3 +1,2 @@
 ﻿@model Contramcamlamroi.Models.Category
-@Html.DropDownListFor(model=>model.IDCate,
-    new SelectList(Model.ListCate.OrderBy(model=>model.NameCate),"IDCate","NameCate"),"--Select Cate--")
+@Html.DropDownListFor(model=>model.IDCate, new SelectList(Model.ListCate.OrderBy(model=>model.IDCate),"IDCate","NameCate"),"--Select Cate--")

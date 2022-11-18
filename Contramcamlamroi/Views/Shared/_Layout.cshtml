@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <link href="~/Content/style.css" rel="stylesheet" />
-
+    <script src="~/Scripts/script.js"></script>
 
     <style>
 
@@ -52,17 +52,14 @@
             display: -webkit-inline-box;
         }
 
-        input[type=text] {
-            width: 200px;
+        .search-product-price input[type=text] {
+            width: 400px;
             -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
 
         /* When the input field gets focus, change its width to 100% */
-        .search-product-price input[type=text]:focus {
-            width: 400px;
-            height: 35px;
-        }
+        
 
         input, select, textarea {
             max-width: 800px;

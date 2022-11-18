@@ -19,8 +19,8 @@
             <td>@Html.EditorFor(model => model.Price)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(model => model.Category1)</td>
-            <td>@Html.EditorFor(model => model.Category)</td>
+            <td>@Html.LabelFor(model => model.Category)</td>
+            
             <td>
                 @{Html.RenderAction("SelectCate", "Product");
                 }
@@ -35,9 +35,9 @@
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.ImagePro)</td>
-            <td><img scr="@Url.Content(Model.ImagePro)" height="150" width="150" id="previewImg" />
-
-            <td>
+            <td><img src="@Url.Content(Model.ImagePro)" height="150" width="150" id="previewImg" />
+            
+            </td>
         </tr>
         <tr>
             <td colspan="2">
