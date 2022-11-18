@@ -32,7 +32,7 @@
                 <tr> </tr>
                 <tr>
                     <td>Nhập Mật Khẩu</td>
-                    <td>@Html.EditorFor(model => model.PasswordUser)</td>
+                    <td><input class="text-box single-line" data-val="true" data-val-required="Mật khẩu không được trống!" id="PasswordUser" name="PasswordUser" type="password" value="" style="padding: 1px 2px; margin-top: 10px; border-radius: 5px;"></td>
                     <td>@Html.ValidationMessageFor(model => model.PasswordUser)</td>
                     @if (ViewBag.ErrorInfo == null)
                     {
