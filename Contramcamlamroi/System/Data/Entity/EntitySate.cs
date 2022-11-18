@@ -2,6 +2,8 @@
 {
     internal class EntitySate
     {
-        internal static EntityState Modified;
+        private static EntityState modified;
+
+        internal static EntityState Modified { get => modified; set => modified = value; }
     }
 }

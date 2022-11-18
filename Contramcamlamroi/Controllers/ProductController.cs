@@ -45,6 +45,23 @@ namespace Contramcamlamroi.Controllers
             }
 
         }
+        public ActionResult Index_Product(string category, int? page, double min = double.MinValue, double max = double.MaxValue)
+        {
+            int pageSize = 8;
+            int pageNum = (page ?? 1);
+            if (category == null)
+            {
+                var productList = database.Products.OrderByDescending(x => x.NamePro);
+                return View(productList.ToPagedList(pageNum, pageSize));
+            }
+            else
+            {
+                var productList = database.Products.OrderByDescending(x => x.Category).Where(x => x.Category == category);
+                return View(productList.ToPagedList(pageNum, pageSize));
+            }
+
+        }
+
         public ActionResult ProductList(int id)
         {
             return View(database.Products.Where(s => s.ProductID == id).FirstOrDefault());

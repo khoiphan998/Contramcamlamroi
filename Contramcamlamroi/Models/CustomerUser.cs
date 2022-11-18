@@ -11,23 +11,12 @@ namespace Contramcamlamroi.Models
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class OrderPro
+    
+    public partial class CustomerUser
     {
-        public OrderPro()
-        {
-            this.OrderDetails = new HashSet<OrderDetail>();
-        }
-
         public int ID { get; set; }
-        public Nullable<System.DateTime> DateOrder { get; set; }
-        public Nullable<int> IDCus { get; set; }
-        public string AddressDeliverry { get; set; }
-
-        public virtual Customer Customer { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public string NameCus { get; set; }
-        public string NamePro { get; set; }
-
+        public string NameCusUser { get; set; }
+        public string RoleCusUser { get; set; }
+        public string PasswordCusUser { get; set; }
     }
 }

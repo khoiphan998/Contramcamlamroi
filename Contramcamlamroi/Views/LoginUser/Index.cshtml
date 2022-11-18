@@ -14,41 +14,41 @@
     }
 </style>
 
-<div style="margin-top: 10%; margin-left: 40%; border-radius: 15px; border: 2px solid #73AD21; width: 30%; height: 300px; ">
+<div style="margin-top:10%;margin-left:40%; border-radius: 15px; border: 2px solid #73AD21; width: 30%;height:300px; ">
     <div class="login-text">
-        <h2>Đăng Nhập</h2>
+        <h2>Đăng Nhập Người Mua</h2>
     </div>
-    @using (Html.BeginForm("Index", "LoginUser"))
-    {
-        @Html.AntiForgeryToken()
-        <table style="margin-left:20%;">
-            <tr>
-                <td>Tên Đăng Nhập</td>
-                <td>@Html.TextBoxFor(model => model.NameUser, new { style = "field-validation-error" })</td>
-                <td>@Html.ValidationMessageFor(model => model.NameUser)</td>
-            </tr>
-            <tr> </tr>
-            <tr>
-                <td>Nhập Mật Khẩu</td>
-                <td>@Html.EditorFor(model => model.PasswordUser)</td>
-                <td>@Html.ValidationMessageFor(model => model.PasswordUser)</td>
-                @if (ViewBag.ErrorInfo == null)
-                {
-                    <p>@ViewBag.ErrorInfo</p>
-                }
-            </tr>
+    <div style="margin-left: 20%;">
+        @using (Html.BeginForm("LoginAcount", "LoginUser"))
+        {
+@Html.AntiForgeryToken()
+                <table>
+                    <tr>
+                        <td>Tên Đăng Nhập</td>
+                        <td>@Html.TextBoxFor(model => model.NameUser, new { style = "field-validation-error" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.NameUser)</td>
+                    </tr>
+                    <tr> </tr>
+                    <tr>
+                        <td>Nhập Mật Khẩu</td>
+                        <td>@Html.EditorFor(model => model.PasswordUser)</td>
+                        <td>@Html.ValidationMessageFor(model => model.PasswordUser)</td>
+                        @if (ViewBag.ErrorInfo == null)
+                        {
+        <p>@ViewBag.ErrorInfo</p>}
+                    </tr>
 
-            <tr>
+                    <tr>
 
 
-                <td></td>
-                <td>
-                    <input type="submit" value="Đăng nhập" class="btn btn-success" />
-                    <a href="@Url.Action("RegisterUser", "LoginUser")"> <hr /> Bạn chưa có tài khoản? </a>
-                </td>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Đăng nhập" class="btn btn-success" />
+                            <a href="@Url.Action("Register", "LoginUser")"> <hr /> Bạn chưa có tài khoản? </a>
+                        </td>
 
-            </tr>
+                    </tr>
 
-        </table>
-    }
+                </table>}
+    </div>
 </div>
