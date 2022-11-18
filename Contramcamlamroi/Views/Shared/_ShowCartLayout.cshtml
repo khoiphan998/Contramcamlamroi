@@ -160,45 +160,49 @@
         .product-nav:hover {
             color: lawngreen;
         }
-        .navbar-inverse .navbar-nav > li > a
-        {
-            font-size:17px;
-            color:green;
-            font-weight:700;
-        }
-        .navbar-inverse .navbar-nav > li > a:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            display: inline-block;
-            height: 1em;
-            width: 100%;
-            border-bottom: 2px solid orange;
-            margin-top: 10px;
-            opacity: 0;
-            -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-            transition: opacity 0.35s, transform 0.35s;
-            -webkit-transform: scale(0,1);
-            transform: scale(0,1);
+
+        .navbar-inverse .navbar-nav > li > a {
+            font-size: 17px;
+            color: green;
+            font-weight: 700;
         }
 
-        .navbar-inverse .navbar-nav > li > a:hover:after {
-            opacity: 1;
-            -webkit-transform: scale(1);
-            transform: scale(1);
-            
-        }
-        .navbar-inverse .navbar-nav > li > a:hover
-        {
-            color:orange;
+            .navbar-inverse .navbar-nav > li > a:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                display: inline-block;
+                height: 1em;
+                width: 100%;
+                border-bottom: 2px solid orange;
+                margin-top: 10px;
+                opacity: 0;
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+                -webkit-transform: scale(0,1);
+                transform: scale(0,1);
+            }
+
+            .navbar-inverse .navbar-nav > li > a:hover:after {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            .navbar-inverse .navbar-nav > li > a:hover {
+                color: orange;
+            }
+        div#div-content {
+            width: 95%;
+            margin-left:5%;
         }
     </style>
 </head>
 <body>
-  
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -208,7 +212,7 @@
                 <a href="@Url.Action("Index","Home")"><img width="100" height="100" src="https://organicstore.vn/wp-content/uploads/2021/12/logo.png" class="header_logo header-logo" alt="Organic Store"></a>
             </div>
             <div class="navbar-collapse collapse" style="margin-left:25%;margin-top:3%;">
-                <ul class="nav navbar-nav" >
+                <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index","Product")">Sản Phẩm</a></li>
                     <li><a href="@Url.Action( "LoginAdmin", "Admin")"><span class="product-nav"></span>Kênh Người Bán</a></li>
                     <li><a href="@Url.Action("Contact", "Home")"><span class="product-nav"></span>Liên Hệ</a></li>
@@ -239,7 +243,7 @@
                 @using (Html.BeginForm("Search", "Product"))
                 {
                     <input type="text" name="_name" placeholder="Bạn tìm cấy chi rứa?...">
-                    <input type="submit" value="Tìm" style="background-color: green; color: white; border-color: white; border-style: solid; border-width: 1px; border-radius: 3px; background-color: lawngreen; -webkit-box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); " />
+                    <button type="submit"><i class="fa fa-search"></i></button> 
                 }
                 <span style="float:right;">
                     <a href="/ShoppingCart/ShowCart">
@@ -254,15 +258,7 @@
     </div>
 
     <div class="row" style="margin-top:1%;height:auto;">
-        <div class="col-md-12" style="width:80%;margin-left:10%;">
-            <ul style="text-decoration:none;background-color:greenyellow;margin-top:20px;list-style-type:none;padding:10px;">
-                <li><a href="/OrderDetail/GroupByTop5" style="color:white;" id="animation-top5">Top 5 sản phẩm bán chạy nhất</a></li>
-                <li style="background-color:lightgray"></li>
-            </ul>
-        </div>
-        <div class="col-md-2" style="margin-top:1%;margin-left:10%;">
-            @{ Html.RenderAction("CategoryPartial", "Categories");}
-        </div>
+       
 
         <div class="col-md-10" id="div-content" style="margin-left:2%;">
             <div class="slideshow-container">

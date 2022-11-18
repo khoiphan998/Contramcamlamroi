@@ -19,12 +19,13 @@
             <td>@Html.EditorFor(model => model.Price)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(model => model.Category)</td>
+            <td>@Html.LabelFor(model => model.Category1)</td>
+            <td>@Html.EditorFor(model => model.Category)</td>
             <td>
                 @{Html.RenderAction("SelectCate", "Product");
                 }
                 @*{Html.RenderAction(“action_name”,”controller_name”); }*@
-                @*@Html.DropDownListFor(model =>model.Category,(SelectList)ViewBag.ListCate)*@
+                @* @Html.DropDownListFor(model =>model.Category,(SelectList)ViewBag.ListCate)*@
 
             </td>
         </tr>
