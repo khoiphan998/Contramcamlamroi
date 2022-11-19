@@ -33,7 +33,18 @@ namespace Contramcamlamroi.Models
         public Nullable<int> Quantity { get; set; }
 
         public virtual Category Category1 { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }       
+        public string ImgPro { get; set; }
+        public decimal pricePro { get; set; }
+        public string NameCate { get; set; }
+        public string DesPro { get; set; }
+        [System.ComponentModel.DataAnnotations.Key]
+        public int? IDPro { get; set; }
+        public decimal Total_Money { get; set; }
+        public Product product { get; set; }
+        public Category category { get; set; }
+        public IEnumerable<Product> ListProduct { get; set; }
+        public int? Top5_Quantity { get; set; }
+        public int? Sum_Quantity { get; set; }
     }
 }

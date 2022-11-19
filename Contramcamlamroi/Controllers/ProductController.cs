@@ -1,33 +1,21 @@
-﻿using System;
+﻿using Contramcamlamroi.Models;
+using PagedList;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Contramcamlamroi.Models;
-using PagedList;
-using PagedList.Mvc;
+
 namespace Contramcamlamroi.Controllers
 {
     public class ProductController : Controller
     {
         // GET: Product
         DBSportStoreEntities2 database = new DBSportStoreEntities2();
-
         public ActionResult SearchOption(double min = double.MinValue, double max = double.MaxValue)
         {
             var list = database.Products.Where(p => (double)p.Price >= double.MinValue && (double)p.Price <= max).ToList();
             return View(list);
-        }
-        public ActionResult Index_Admin(string _name)
-        {
-            if (_name == null)
-                return View(database.Products.ToList());
-            else
-                return View(database.Products.Where(s => s.NamePro.Contains(_name)).ToList());
-
         }
         public ActionResult Index(string category, int? page, double min = double.MinValue, double max = double.MaxValue)
         {
@@ -42,40 +30,21 @@ namespace Contramcamlamroi.Controllers
             {
                 var productList = database.Products.OrderByDescending(x => x.Category).Where(x => x.Category == category);
                 return View(productList.ToPagedList(pageNum, pageSize));
+
             }
 
         }
-        public ActionResult Index_Product(string category, int? page, double min = double.MinValue, double max = double.MaxValue)
-        {
-            int pageSize = 8;
-            int pageNum = (page ?? 1);
-            if (category == null)
-            {
-                var productList = database.Products.OrderByDescending(x => x.NamePro);
-                return View(productList.ToPagedList(pageNum, pageSize));
-            }
-            else
-            {
-                var productList = database.Products.OrderByDescending(x => x.Category).Where(x => x.Category == category);
-                return View(productList.ToPagedList(pageNum, pageSize));
-            }
-
-        }
-
-        public ActionResult ProductList(int id)
-        {
-            return View(database.Products.Where(s => s.ProductID == id).FirstOrDefault());
-        }
-
         public ActionResult Create()
         {
+            List<Category> list = database.Categories.ToList();
+            ViewBag.listCategory = new SelectList(list, "IDCate", "NameCate", "");
             Product pro = new Product();
             return View(pro);
         }
-
         [HttpPost]
         public ActionResult Create(Product pro)
         {
+            List<Category> list = database.Categories.ToList();
             try
             {
                 if (pro.UploadImage != null)
@@ -88,21 +57,29 @@ namespace Contramcamlamroi.Controllers
                 }
                 database.Products.Add(pro);
                 database.SaveChanges();
-                return RedirectToAction("Index_Admin");
+                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
         }
-
-        public ActionResult SelectCate()
+        public ActionResult Edit(int id)
         {
-            Category se_cate = new Category();
-            se_cate.ListCate = database.Categories.ToList<Category>();
-            return PartialView(se_cate);
+            return View(database.Products.Where(s => s.ProductID == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, Product name)
+        {
+            database.Entry(name).State = System.Data.Entity.EntityState.Modified;
+            database.SaveChanges();
+            return RedirectToAction("Index_Admin");
         }
 
+        public ActionResult Details(int id)
+        {
+            return View(database.Products.Where(s => s.ProductID == id).FirstOrDefault());
+        }
         public ActionResult Delete(int id)
         {
             return View(database.Products.Where(s => s.ProductID == id).FirstOrDefault());
@@ -115,52 +92,43 @@ namespace Contramcamlamroi.Controllers
                 pro = database.Products.Where(s => s.ProductID == id).FirstOrDefault();
                 database.Products.Remove(pro);
                 database.SaveChanges();
-                return RedirectToAction("Index_Admin");
+                return RedirectToAction("Index");
             }
             catch
             {
                 return Content("This data is using in other table, Error Delete!");
             }
         }
-        public ActionResult Edit(int? id)
+        public ActionResult SelectCate()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = database.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Category = new SelectList(database.Categories, "IDCate", "NameCate", product.Category);
-            return View(product);
+            Category se_cate = new Category();
+            se_cate.ListCate = database.Categories.ToList<Category>();
+            return PartialView(se_cate);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,NamePro,DecriptionPro,Category,Price,ImagePro")] Product product)
+        public ActionResult Index_Admin(string _name)
         {
-            if (ModelState.IsValid)
-            {
-                database.Entry(product).State = EntityState.Modified;
-                database.SaveChanges();
-                return RedirectToAction("Index_Admin");
-            }
-            ViewBag.Category = new SelectList(database.Categories, "IDCate", "NameCate", product.Category);
-            return View(product);
-        }
+            if (_name == null)
+                return View(database.Products.ToList());
+            else
+                return View(database.Products.Where(s => s.NamePro.Contains(_name)).ToList());
 
-        public ActionResult Details(int id)
+        }
+        public ActionResult ProductList(int id)
         {
             return View(database.Products.Where(s => s.ProductID == id).FirstOrDefault());
         }
         public ActionResult Search(string _name)
         {
-            var list = database.Products.Where(p => p.NamePro == _name).ToList();
-            return View(list);
+            if (_name == null)
+                return View(database.Products.ToList());
+            else
+                return View(database.Products.Where(s => s.NamePro.Contains(_name)).ToList());
+
+
         }
-
-
+        public ActionResult Vourcher(int id)
+        {
+            return View(database.Products.Where(s => s.ProductID == id).FirstOrDefault());
+        }
     }
 }
