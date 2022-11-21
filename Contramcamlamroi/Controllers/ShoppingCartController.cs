@@ -151,7 +151,7 @@ namespace Contramcamlamroi.Controllers
             Cart cart = Session["Cart"] as Cart;
             int id_pro = int.Parse(form["idPro"]);
             int _quantity = int.Parse(form["cartQuantity"]);
-            cart.Update_quantity(id_pro,_quantity);
+            cart.Update_quantity(id_pro, _quantity);
             return RedirectToAction("ShowCart", "ShoppingCart");
         }
         public PartialViewResult BagCart()

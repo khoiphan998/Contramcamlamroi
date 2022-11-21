@@ -2,6 +2,6 @@
 {
     internal class EntityState
     {
-        public static Data.EntityState Modified { get; internal set; }
+        internal static Data.EntityState Modified;
     }
 }

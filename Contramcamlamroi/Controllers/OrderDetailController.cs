@@ -28,5 +28,28 @@ namespace Contramcamlamroi.Controllers
                 };
             return View(query.Take(5).ToList());
         }
+        public ActionResult GroupByTop()
+        {
+            List<Product> proList = database.Products.ToList();
+            var query = from od in proList
+                        join p in proList on od.ProductID equals p.ProductID into tbl
+                        group od by new
+                        {
+                            idPro = od.ProductID,
+                            namePro = od.NamePro,
+                            imagePro = od.ImagePro,
+                            price = od.Price
+                        } into gr
+                        orderby gr.Max(s => s.ProductID) descending
+                        select new ViewModel
+                        {
+                            IDPro = gr.Key.idPro,
+                            NamePro = gr.Key.namePro,
+                            ImgPro = gr.Key.imagePro,
+                            pricePro = (decimal)gr.Key.price,
+                            Top5_Quantity = gr.Max(s => s.ProductID)
+                        };
+            return View(query.Take(5).ToList());
+        }
     }
 }

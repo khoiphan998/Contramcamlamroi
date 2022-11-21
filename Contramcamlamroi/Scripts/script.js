@@ -25,3 +25,13 @@ function scrollFunction() {
         document.getElementById(".navbar-inverse").style.top = "-100%";
     }
 }
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        $("#slideshow > div:gt(0)").hide();
+    setInterval(function()
+    {
+        $('#SlideshowImages > div:first').fadeOut(1000).next().fadeIn(1000).end().appendTo('#SlideshowImages');  
+        }, 3000);  
+    });
+</script>

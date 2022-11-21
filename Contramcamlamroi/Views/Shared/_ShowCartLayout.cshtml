@@ -49,16 +49,13 @@
             display: -webkit-inline-box;
         }
 
-        input[type=text] {
-            width: 200px;
+        .search-product-price [type=text] {
+            width: 400px;
             -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
         /* When the input field gets focus, change its width to 100% */
-        .search-product-price input[type=text]:focus {
-            width: 400px;
-            height: 35px;
-        }
+        
 
         input, select, textarea {
             max-width: 800px;
@@ -235,12 +232,14 @@
 
                 </ul>
 
+
             </div>
             <div class="search-product-price" style="text-align: center;">
                 @using (Html.BeginForm("Search", "Product"))
                 {
                     <input type="text" name="_name" placeholder="Bạn tìm cấy chi rứa?...">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <input type="submit" value="Tìm" style="background-color: green; color: white; border-color: white; border-style: solid; border-width: 1px;
+border-radius: 3px; background-color: lawngreen; -webkit-box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); " />
                 }
                 <span style="float:right;">
                     <a href="/ShoppingCart/ShowCart">

@@ -51,8 +51,8 @@ namespace Contramcamlamroi.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Category cate)
         {
-            database.Entry(cate).State = System.Data.Entity.EntitySate.Modified;
-            database.SaveChanges();
+            database.Entry(cate).State = System.Data.Entity.EntityState.Modified;
+            int v = database.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpPost]

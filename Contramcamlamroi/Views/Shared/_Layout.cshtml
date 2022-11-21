@@ -272,7 +272,8 @@
                 @using (Html.BeginForm("Search", "Product"))
                 {
               <input type="text" name="_name" placeholder="    Bạn cần tìm gì?.....">
-              <input type="submit" value="Tìm" style="background-color: green; color: white; border-color: white; border-style: solid; border-width: 1px; border-radius: 3px; background-color: lawngreen; -webkit-box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); " />
+              <input type="submit" value="Tìm" style="background-color: green; color: white; border-color: white; border-style: solid; border-width: 1px;
+border-radius: 3px; background-color: lawngreen; -webkit-box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); box-shadow: 0px 1px 4px rgb(0 0 0 / 20%); " />
                 <span >
                     <a href="/ShoppingCart/ShowCart"style="float:right;margin-bottom:2%;">
                         <img src="@Url.Content("~/Content/images/cart.png")" style="height:40px;width:40px;" />
@@ -302,6 +303,7 @@
             <div class="slideshow-container">
 
             </div>
+            
             @RenderBody()
         </div>
     </div>

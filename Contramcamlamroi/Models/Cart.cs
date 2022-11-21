@@ -5,32 +5,31 @@ using System.Web;
 
 namespace Contramcamlamroi.Models
 {
-    public class Cartitem
+    public class CartItem
     {
         public Product _product { get; set; }
         public int _quantity { get; set; }
-
     }
     public class Cart
     {
-        List<Cartitem>items = new List<Cartitem>();
-        public IEnumerable<Cartitem> Items
+        List<CartItem> items = new List<CartItem>();
+        public IEnumerable<CartItem> Items
         {
             get { return items; }
         }
+
         public void Add_Product_Cart(Product _pro, int _quan = 1)
         {
             var item = Items.FirstOrDefault(s => s._product.ProductID == _pro.ProductID);
             if (item == null)
-                items.Add(new Cartitem
+                items.Add(new CartItem
                 {
                     _product = _pro,
                     _quantity = _quan
-
-
                 });
             else
                 item._quantity += _quan;
+
         }
         public int Total_quantity()
         {
@@ -41,21 +40,11 @@ namespace Contramcamlamroi.Models
             var total = items.Sum(s => s._quantity * s._product.Price);
             return (decimal)total;
         }
-        //public void Update_quantity(int id, int _new_quan)
-        //{
-        //    var item = items.Find(s => s._product.ProductID == id);
-        //    if (items != null)
-        //        item._quantity = _new_quan;
-        //}
-        public void Update_quantity(int id, int _new_quan)
+        public void Update_quantity(int id, int new_quan)
         {
             var item = items.Find(s => s._product.ProductID == id);
             if (item != null)
-            {
-                if (items.Find(s => s._product.Quantity > _new_quan) != null)
-                    item._quantity = _new_quan;
-                else item._quantity = 1;
-            }
+                item._quantity = new_quan;
         }
         public void Remove_CartItem(int id)
         {
@@ -66,7 +55,4 @@ namespace Contramcamlamroi.Models
             items.Clear();
         }
     }
-   
-
-        
 }
